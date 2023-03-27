@@ -1851,3 +1851,15 @@
 37	118	0	C:/Users/16771/Desktop/http_server/restful_server/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7a58d069b1cac880
 119	17115	0	esp-idf/esptool_py/CMakeFiles/app-flash	f213a2955f6804f1
 119	17115	0	C:/Users/16771/Desktop/http_server/restful_server/build/esp-idf/esptool_py/CMakeFiles/app-flash	f213a2955f6804f1
+119	524	7016062967381702	esp-idf/main/CMakeFiles/__idf_main.dir/esp_rest_main.c.obj	ea4bd41793ef02b7
+44	298	7016063384033945	esp-idf/main/CMakeFiles/__idf_main.dir/rest_server.c.obj	e4de81d27e0f9583
+299	410	7016063385165783	esp-idf/main/libmain.a	ed329d751dfc17c8
+410	3005	7016063410961311	esp-idf/esp_system/ld/sections.ld	eda4e67bb84c843c
+410	3005	7016063410961311	C:/Users/16771/Desktop/http_server/restful_server/build/esp-idf/esp_system/ld/sections.ld	eda4e67bb84c843c
+3005	5866	7016063439515801	restful_server.elf	c9f43efcde6fd118
+5866	6172	7016063442796551	.bin_timestamp	26be0e3bb7c9df1c
+5866	6172	7016063442796551	C:/Users/16771/Desktop/http_server/restful_server/build/.bin_timestamp	26be0e3bb7c9df1c
+6172	6243	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7a58d069b1cac880
+6172	6243	0	C:/Users/16771/Desktop/http_server/restful_server/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7a58d069b1cac880
+6243	23204	0	esp-idf/esptool_py/CMakeFiles/app-flash	f213a2955f6804f1
+6243	23204	0	C:/Users/16771/Desktop/http_server/restful_server/build/esp-idf/esptool_py/CMakeFiles/app-flash	f213a2955f6804f1

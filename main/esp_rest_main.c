@@ -36,8 +36,7 @@ QueueHandle_t RxQueue = NULL;
 
 //定义执行锁，当发出执行指令时上锁，得到机子的返回时解锁，最大超时时间要设置
 SemaphoreHandle_t lock = NULL;
-//执行锁超时时间
-#define  Lock_MaxBlockTime 50000
+
 
 
 #define TXD_PIN (GPIO_NUM_4)
@@ -45,7 +44,7 @@ SemaphoreHandle_t lock = NULL;
 
 #define MDNS_INSTANCE "esp home web server"
 
-static const char *TAG = "example";
+static const char *TAG = "main";
 
 esp_err_t start_rest_server(const char *base_path);
 

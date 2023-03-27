@@ -1,7 +1,45 @@
 # restful_server
- an adapter
+ an adapter for http2uart
+
+- 框架：ESP-idf v5.0.1
+- 环境：windows
+- 已测试的板子：esp32s3
+  - 目前CMake设置的也是s3，估计可以无缝衔接到其他esp上，但是我测的另一块esp32 wroom wifi部分是用不了的（可能烧了
+
+
+
+在出正式版本后会打包成bin用官方工具烧录，不用配环境。
+
+每个请求的handler大概逻辑如下：
+
+1. 接收请求的报文
+2. cJson解析出元素
+3. 判断接收元素是否在范围内
+4. 解析成对应的CMD，并把Data放入待发送数组
+5. 拿lock
+6. 清空uart缓冲区
+7. 发送数据帧
+8. 等待第一次数据帧到达，有就直接处理数据，无则继续等到1s，还没就在等，再没就500
+9. 处理得到的数据，满足帧头/要求的直接发回json或者200
+
+
 
 我自认为是屎山代码，想要维护起来难度极高（打死我都没想到每个API的处理函数复用率这么低
+
+最主要的处理function都在restful_server.c 里
+
+建议按整体大纲来找问题，预估全部加起来的行数超过2k（我想解耦的，但是很麻烦，已经解了一部分了
+
+## 环境变量
+
+位于esp_rest_main.c里的有
+
+- RX_BUF_SIZE 串口缓冲区大小，如果单次发送的Json太长可能需要扩大缓冲区
+
+位于rest_server.c的有
+
+- Lock_MaxBlockTime 自旋锁最大堵塞时间 默认2000，即2s/2000ms
+- Uart_MaxBlockTime 单次串口接收堵塞时间 默认1000 即1s/1000ms
 
 ## 串口部分
 
