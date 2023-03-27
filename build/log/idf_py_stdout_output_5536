@@ -1,0 +1,25 @@
+[1/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/rest_server.c.obj
+C:/Users/16771/Desktop/http_server/restful_server/main/rest_server.c: In function 'connect_status_info_get_handler':
+C:/Users/16771/Desktop/http_server/restful_server/main/rest_server.c:227:9: warning: variable 'total_length' set but not used [-Wunused-but-set-variable]
+  227 |     int total_length = 0;
+      |         ^~~~~~~~~~~~
+[2/7] Linking C static library esp-idf\main\libmain.a
+[3/7] Generating ld/sections.ld
+[4/7] Linking CXX executable restful_server.elf
+[5/7] Generating binary image from built executable
+esptool.py v4.5.1
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/Users/16771/Desktop/http_server/restful_server/build/restful_server.bin
+[6/7] cmd.exe /C "cd /D C:\Users\16771\Desktop\http_server\restful_server\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.0_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.0.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/16771/Desktop/http_server/restful_server/build/partition_table/partition-table.bin C:/Users/16771/Desktop/http_server/restful_server/build/restful_server.bin"
+restful_server.bin binary size 0xc4240 bytes. Smallest app partition is 0x100000 bytes. 0x3bdc0 bytes (23%) free.
+[6/7] cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.0.1\components\esptool_py && C:\Espressif\tools\cmake\3.24.0\bin\cmake.exe -D IDF_PATH=C:/Espressif/frameworks/esp-idf-v5.0.1 -D SERIAL_TOOL=C:/Espressif/python_env/idf5.0_py3.8_env/Scripts/python.exe;;C:/Espressif/frameworks/esp-idf-v5.0.1/components/esptool_py/esptool/esptool.py;--chip;esp32s3 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@app-flash_args -D WORKING_DIRECTORY=C:/Users/16771/Desktop/http_server/restful_server/build -P C:/Espressif/frameworks/esp-idf-v5.0.1/components/esptool_py/run_serial_tool.cmake"
+esptool esp32s3 -p COM12 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 4MB 0x10000 restful_server.bin
+esptool.py v4.5.1
+Serial port COM12
+
+A fatal error occurred: Could not open COM12, the port doesn't exist
+FAILED: esp-idf/esptool_py/CMakeFiles/app-flash C:/Users/16771/Desktop/http_server/restful_server/build/esp-idf/esptool_py/CMakeFiles/app-flash 
+cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.0.1\components\esptool_py && C:\Espressif\tools\cmake\3.24.0\bin\cmake.exe -D IDF_PATH=C:/Espressif/frameworks/esp-idf-v5.0.1 -D SERIAL_TOOL=C:/Espressif/python_env/idf5.0_py3.8_env/Scripts/python.exe;;C:/Espressif/frameworks/esp-idf-v5.0.1/components/esptool_py/esptool/esptool.py;--chip;esp32s3 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@app-flash_args -D WORKING_DIRECTORY=C:/Users/16771/Desktop/http_server/restful_server/build -P C:/Espressif/frameworks/esp-idf-v5.0.1/components/esptool_py/run_serial_tool.cmake"
+ninja: build stopped: subcommand failed.

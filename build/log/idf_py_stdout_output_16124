@@ -1,0 +1,23 @@
+[1/10] Linking C static library esp-idf\protocol_examples_common\libprotocol_examples_common.a
+
+[2/10] Linking C static library esp-idf\espressif__mdns\libespressif__mdns.a
+
+[3/10] Linking C static library esp-idf\esp_local_ctrl\libesp_local_ctrl.a
+
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/rest_server.c.obj
+
+[5/10] Linking C static library esp-idf\main\libmain.a
+
+[6/10] Generating ld/sections.ld
+
+[7/10] Linking CXX executable restful_server.elf
+
+FAILED: restful_server.elf 
+
+cmd.exe /C "cd . && C:\Espressif\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-g++.exe -mlongcalls  @CMakeFiles\restful_server.elf.rsp -o restful_server.elf  && cd ."
+
+c:/espressif/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: esp-idf/main/libmain.a(rest_server.c.obj):(.literal.connect_status_info_get_handler+0x4): undefined reference to `RX_BUF_SIZE'
+
+collect2.exe: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+

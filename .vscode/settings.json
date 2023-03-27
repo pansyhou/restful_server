@@ -1,0 +1,13 @@
+{
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "idf.flashType": "UART",						//接口类型必须为JTAG
+    "idf.adapterTargetName": "esp32s3",
+    "idf.portWin": "COM12",						//替换成自己的串口
+    "idf.openOcdConfigs": [						//配置文件根据实际选择 后续要修改此文件
+        "board/esp32s3-bridge.cfg"
+    ],
+    "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
+
+    "idf.adapterTargetName": "esp32s3",
+    "idf.espIdfPathWin": "C:\\Espressif\\frameworks\\esp-idf-v5.0.1"
+}
