@@ -207,7 +207,8 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
     for (int i = 1; i < 5; i++) {
         UartSendData[5] ^= UartSendData[i];//异或校验
     }
-    UartSendData[6] = 0xDD;//CMD
+    UartSendData[6] = 0xDD;//end
+
     //拿锁
     xQueueSemaphoreTake(lock, Lock_MaxBlockTime);
     //清空缓冲区
@@ -282,6 +283,94 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
     return ESP_OK;
 }
 
+static esp_err_t reset_terminal_handler (httpd_req_t *req){
+    uint8_t UartSendData[7] = {0};
+    char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
+    //解析请求到buf
+    Read_http_req(req, buf);
+    //得到主机码
+    cJSON *get = cJSON_Parse(buf);
+    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
+    if (Host_Code < 1 || Host_Code > 0xFF) {
+        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
+    }
+    cJSON_Delete(get);
+
+    //发送串口
+    UartSendData[0] = 0xaa;//帧头
+    UartSendData[1] = 0x03;//length
+    UartSendData[2] = 0x01;//index
+    UartSendData[3] = 0x02;//CMD
+    for (int i = 1; i < 4; i++) {
+        UartSendData[4] ^= UartSendData[i];//异或校验
+    }
+    UartSendData[5] = 0xDD;//end
+    //拿锁
+    xQueueSemaphoreTake(lock, Lock_MaxBlockTime);
+    //清空缓冲区
+    uart_flush(UART_NUM_1);
+    //发送数据帧
+    sendData(UartSendData);
+
+    //处理数据帧阶段
+    httpd_resp_set_type(req, "application/json");
+    //解析json
+    cJSON *root = cJSON_CreateObject();
+    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
+    //第一次接收信息，等一秒钟的数据帧到达
+    int rxBytes = uart_read_bytes(UART_NUM_1, data, RX_BUF_SIZE, Uart_MaxBlockTime);
+    int total_length = 0;
+    //如果有返回数据，直接读
+    uart_step step=End;
+    if(rxBytes <= 0) { //在等一秒，实在不行就噶了
+        rxBytes = uart_read_bytes(UART_NUM_1, data, RX_BUF_SIZE, 1000 / portTICK_PERIOD_MS);
+        if (rxBytes <=0) {
+            httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "terminal did not send back any response, please resend");
+            xSemaphoreGive(lock);
+            cJSON_Delete(root);
+            return ESP_OK;
+        }
+    }
+    ESP_LOGI(REST_TAG, "Read %d bytes: '%s'", rxBytes, data);
+    ESP_LOG_BUFFER_HEXDUMP(REST_TAG, data, rxBytes, ESP_LOG_INFO);
+    //目前检查是不是index==Host_Code的条件有点严格，同时太占地方
+    for (int i = 0; i < rxBytes; i++) {
+        if (data[i] == 0xaa) {//帧头
+            step = head;
+        }
+        switch (step) {
+            case head:
+                step = length;
+                break;
+            case length:
+            {
+                step = Index;
+                total_length = data[i];
+            }break;
+            case Index:{
+                step = CMD;
+                //不做校验了
+                cJSON_AddNumberToObject(root, "Host_Code", data[i]);
+                const char *Host_Code_info = cJSON_Print(root);
+                httpd_resp_sendstr(req, Host_Code_info);
+                xSemaphoreGive(lock);
+                cJSON_Delete(root);
+                return ESP_OK;
+            }break;
+            case CMD:
+                step = Data ;
+                break;
+            case Data:
+                break;
+            case Check:
+                break;
+            case End:
+                break;
+        }
+    }
+
+    return ESP_OK;
+}
 ///* Simple handler for getting system handler */
 //static esp_err_t system_info_get_handler(httpd_req_t *req)
 //{
@@ -333,6 +422,15 @@ esp_err_t start_rest_server(const char *base_path)
             .user_ctx = rest_context
     };
     httpd_register_uri_handler(server, &status_info_get_uri);
+
+    httpd_uri_t reset_terminal_uri = {
+            .uri = "/api/v1/reset_terminal",
+            .method = HTTP_GET,
+            .handler = reset_terminal_handler,
+            .user_ctx = rest_context
+    };
+    httpd_register_uri_handler(server, &reset_terminal_uri);
+
 
 
 //    /* URI handler for fetching temperature data */

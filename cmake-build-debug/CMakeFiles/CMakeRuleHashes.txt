@@ -1,5 +1,5 @@
 # Hashes of file build rules.
-e4f70f52ad8df81950b12d46b10e746e .bin_timestamp
+8a13cc6569048d3a5f9494bac5688fbc .bin_timestamp
 6ef3fcfe9e0c273f9486588617855202 CMakeFiles/_project_elf_src
 6ef3fcfe9e0c273f9486588617855202 CMakeFiles/app
 6ef3fcfe9e0c273f9486588617855202 CMakeFiles/bootloader

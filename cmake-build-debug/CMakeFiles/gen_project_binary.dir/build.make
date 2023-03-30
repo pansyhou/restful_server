@@ -69,7 +69,7 @@ CMakeFiles/gen_project_binary: .bin_timestamp
 
 .bin_timestamp: restful_server.elf
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:\Users\16771\Desktop\http_server\restful_server\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating binary image from built executable"
-	python C:/Espressif/frameworks/esp-idf-v5.0.1/components/esptool_py/esptool/esptool.py --chip esp32s3 elf2image --flash_mode dio --flash_freq 40m --flash_size 4MB --elf-sha256-offset 0xb0 --min-rev-full 0 --max-rev-full 99 -o C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/restful_server.bin C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/restful_server.elf
+	python C:/Espressif/frameworks/esp-idf-v5.0.1/components/esptool_py/esptool/esptool.py --chip esp32s3 elf2image --flash_mode dout --flash_freq 40m --flash_size 4MB --elf-sha256-offset 0xb0 --min-rev-full 0 --max-rev-full 99 -o C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/restful_server.bin C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/restful_server.elf
 	C:\Jetbrain\apps\CLion\ch-0\223.7571.171\bin\cmake\win\bin\cmake.exe -E echo "Generated C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/restful_server.bin"
 	C:\Jetbrain\apps\CLion\ch-0\223.7571.171\bin\cmake\win\bin\cmake.exe -E md5sum C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/restful_server.bin > C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/.bin_timestamp
 

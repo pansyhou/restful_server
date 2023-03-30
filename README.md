@@ -30,6 +30,18 @@
 
 建议按整体大纲来找问题，预估全部加起来的行数超过2k（我想解耦的，但是很麻烦，已经解了一部分了
 
+## 烧录方式（windows
+
+1. 下载Flash Download Tools [Tools | Espressif Systems](https://www.espressif.com/en/support/download/other-tools)
+2. 解压缩
+3. 选择二进制bin文件（在仓库cmake-build-debug里，叫restful_server.bin
+4. ![](https://pic.imgdb.cn/item/64259009a682492fcc8089d8.jpg)
+5. 设置烧录起始地址，箭头右手边（0x10000
+6. 设置SPI MODE 为DOUT
+7. 按住boot键，用USB线连接板子，上电后可放手
+8. 一般我们通过插拔看看哪个串口号少了来确定
+9. 其他设置不用动，可以点start看看可以了没，如果有进度条而且在慢慢推进就ok了
+
 ## 环境变量
 
 位于esp_rest_main.c里的有
@@ -86,8 +98,12 @@
 
 ### 2复位终端
 
+这个怪怪的啊，串口返回的index是xx，所以一共会接到多少个数据帧？
+
+不管了，复位是全部复位的，如果有需要知道复位了哪个可以说
+
 - /api/v1/reset_terminal
-- Post
+- Get
 - application/json
 - 参数 Host_Code int 0x01-0xFF
 
