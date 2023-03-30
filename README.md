@@ -35,7 +35,7 @@
 1. 下载Flash Download Tools [Tools | Espressif Systems](https://www.espressif.com/en/support/download/other-tools)
 2. 解压缩
 3. 选择二进制bin文件（在仓库cmake-build-debug里，叫restful_server.bin
-4. ![](https://pic.imgdb.cn/item/64259009a682492fcc8089d8.jpg)
+4. ![image](https://cdn.staticaly.com/gh/pansyhou/ImgBed@main/BlogImg/image.48rq1njgfd40.webp)
 5. 设置烧录起始地址，箭头右手边（0x10000
 6. 设置SPI MODE 为DOUT
 7. 按住boot键，用USB线连接板子，上电后可放手
