@@ -28,7 +28,7 @@
 #include "driver/sdmmc_host.h"
 #endif
 
-const int RX_BUF_SIZE = 1024;
+const int RX_BUF_SIZE = 512;
 
 //定义发送信息队列，大小为64个数据包，一个数据包20
 QueueHandle_t Queue = NULL;

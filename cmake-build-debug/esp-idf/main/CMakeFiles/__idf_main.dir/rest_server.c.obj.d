@@ -142,4 +142,8 @@ esp-idf/main/CMakeFiles/__idf_main.dir/rest_server.c.obj: \
  C:\Espressif\frameworks\esp-idf-v5.0.1\components\newlib\platform_include/sys/termios.h \
  C:\Espressif\frameworks\esp-idf-v5.0.1\components\newlib\platform_include/sys/poll.h \
  C:\Espressif\frameworks\esp-idf-v5.0.1\components\newlib\platform_include/sys/dirent.h \
- C:\Espressif\frameworks\esp-idf-v5.0.1\components\json\cJSON/cJSON.h
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\json\cJSON/cJSON.h \
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\driver\include/driver/uart.h \
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\esp_ringbuf\include/freertos/ringbuf.h \
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\hal\include/hal/uart_types.h \
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\soc\esp32s3\include/soc/clk_tree_defs.h

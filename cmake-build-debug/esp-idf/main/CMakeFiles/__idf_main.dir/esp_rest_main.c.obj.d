@@ -182,4 +182,8 @@ esp-idf/main/CMakeFiles/__idf_main.dir/esp_rest_main.c.obj: \
  c:\espressif\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\xtensa-esp32s3-elf\sys-include\sys\errno.h \
  C:\Espressif\frameworks\esp-idf-v5.0.1\components\lwip\port\esp32\include/arch/sys_arch.h \
  c:\espressif\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\xtensa-esp32s3-elf\sys-include\ctype.h \
- C:\Espressif\frameworks\esp-idf-v5.0.1\examples\common_components\protocol_examples_common\include/protocol_examples_common.h
+ C:\Espressif\frameworks\esp-idf-v5.0.1\examples\common_components\protocol_examples_common\include/protocol_examples_common.h \
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\driver\include/driver/uart.h \
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\esp_ringbuf\include/freertos/ringbuf.h \
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\hal\include/hal/uart_types.h \
+ C:\Espressif\frameworks\esp-idf-v5.0.1\components\soc\esp32s3\include/soc/clk_tree_defs.h

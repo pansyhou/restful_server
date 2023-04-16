@@ -25,6 +25,7 @@ typedef enum uart_step{
     End
 }uart_step;
 extern const int RX_BUF_SIZE;
+static uint8_t data[512];
 //自旋锁
 extern SemaphoreHandle_t lock;
 //自旋锁最大堵塞时间
@@ -220,7 +221,7 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
     httpd_resp_set_type(req, "application/json");
     //解析json
     cJSON *root = cJSON_CreateObject();
-    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
+//    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
     //第一次接收信息，等一秒钟的数据帧到达
     int rxBytes = uart_read_bytes(UART_NUM_1, data, RX_BUF_SIZE, Uart_MaxBlockTime);
     int total_length = 0;
@@ -316,7 +317,7 @@ static esp_err_t reset_terminal_handler (httpd_req_t *req){
     httpd_resp_set_type(req, "application/json");
     //解析json
     cJSON *root = cJSON_CreateObject();
-    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
+//    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
     //第一次接收信息，等一秒钟的数据帧到达
     int rxBytes = uart_read_bytes(UART_NUM_1, data, RX_BUF_SIZE, Uart_MaxBlockTime);
     int total_length = 0;
