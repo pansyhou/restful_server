@@ -233,9 +233,11 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
     UartSendData[2] = 0x01;//index
     UartSendData[3] = 0x01;//CMD
     UartSendData[4] = (uint8_t)Host_Code;//data
-    for (int i = 1; i < 5; i++) {
+    UartSendData[5] = UartSendData[1];
+    for (int i = 2; i < 5; i++) {
         UartSendData[5] ^= UartSendData[i];//异或校验
     }
+    ESP_LOGI(REST_TAG,"xor data :%d",UartSendData[5]);
     UartSendData[6] = 0xDD;//end
 
     //拿锁
@@ -420,10 +422,11 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
     UartSendData[6] = (uint8_t)(coins);//data
     UartSendData[7] = (uint8_t) (amount >> 8);//data
     UartSendData[8] = (uint8_t) (amount);//data
-
-    for (int i = 1; i < 9; i++) {
+    UartSendData[9] = UartSendData[1];
+    for (int i = 2; i < 9; i++) {
         UartSendData[9] ^= UartSendData[i];//异或校验
     }
+    ESP_LOGI(REST_TAG,"xor data :%d",UartSendData[9]);
     UartSendData[10] = 0xDD;//end
 
 
@@ -442,10 +445,13 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
     uart_step step=End;
     int rxBytes = Uart_RX_Data(data);
     int total_length = 0;
-
+    int checkSum = 0;//lenth-data
+    int start = 0;
+    int flag = 0;
     for (int i = 0; i < rxBytes; i++) {
         if (data[i] == 0xaa) {//帧头
             step = head;
+            start = i;
         }
         switch (step) {
             case head:
@@ -460,36 +466,36 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
                 step = CMD;
             }break;
             case CMD:{
-                step = Check;
-            }
-                break;
-            case Check:
+                step = Data;
+            }break;
 
-            case Data:
+            case Data: {
+                step = Check;
                 if (data[i] == 0x01) {
-                        httpd_resp_sendstr(req, "OK");
-                        xSemaphoreGive(lock);
-                        cJSON_Delete(root);
-                        return ESP_OK;
-                    } else if (data[i] == 0x00){
-                        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "cloud charge fail");
-                        xSemaphoreGive(lock);
-                        cJSON_Delete(root);
-                        return ESP_OK;
-                    }else{
-                        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "data not reliable");
-                        xSemaphoreGive(lock);
-                        cJSON_Delete(root);
-                        return ESP_OK;
-                    }
-                    break;
+                    flag = 1;
+
+                }
+            }break;
             case Check:
+            {
+                step = End;
+                for (int j = start; j < i; j++) {
+                    checkSum ^= data[i];
+                }
+                if (data[i] == checkSum && flag == 1) {
+                    httpd_resp_sendstr(req, "OK");
+                } else{
+                    httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "cloud charge fail");
+
+                }
+            }
                 break;
             case End:
                 break;
         }
     }
-
+    xSemaphoreGive(lock);
+    cJSON_Delete(root);
     return ESP_OK;
 }
 ///* Simple handler for getting system handler */
@@ -520,6 +526,106 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
 //    cJSON_Delete(root);
 //    return ESP_OK;
 //}
+
+
+static esp_err_t get_status_handler (httpd_req_t *req){
+    uint8_t UartSendData[6] = {0};
+    memset(UartSendData, 0, sizeof(UartSendData));
+    char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
+    //解析请求到buf
+    Read_http_req(req, buf);
+
+    //发送串口
+    UartSendData[0] = 0xaa;//帧头
+    UartSendData[1] = 0x03;//length
+    UartSendData[2] = 0x01;//index
+    UartSendData[3] = 0x05;//CMD
+    UartSendData[4] = UartSendData[1];
+    for (int i = 2; i < 4; i++) {
+        UartSendData[4] ^= UartSendData[i];//异或校验
+    }
+    ESP_LOGI(REST_TAG,"xor data :%d",UartSendData[9]);
+    UartSendData[5] = 0xDD;//end
+
+
+    //拿锁
+    xQueueSemaphoreTake(lock, Lock_MaxBlockTime);
+    //清空缓冲区
+    uart_flush(UART_NUM_1);
+    //发送数据帧
+    sendData(UartSendData);
+
+    //处理数据帧阶段
+    httpd_resp_set_type(req, "application/json");
+    //解析json
+    cJSON *root = cJSON_CreateObject();
+//    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
+    uart_step step=End;
+    int rxBytes = Uart_RX_Data(data);
+    int total_length = 0;
+    int checkSum = 0;//lenth-data
+    int start = 0;
+    int flag = 0;
+    for (int i = 0; i < rxBytes; i++) {
+        if (data[i] == 0xaa) {//帧头
+            step = head;
+            start = i;
+        }
+        switch (step) {
+            case head:
+                step = length;
+                break;
+            case length:
+            {
+                step = Index;
+                total_length = data[i];
+            }break;
+            case Index:{
+                step = CMD;
+            }break;
+            case CMD:{
+                step = Data;
+            }break;
+
+            case Data: {
+                step = Check;
+                //    cJSON *root = cJSON_CreateObject();
+                cJSON_AddNumberToObject(root, "game_mode", data[i++]);//0
+                cJSON_AddNumberToObject(root, "probability", (int)(data[i] | (data[i + 1]<<8)));//12
+                i += 2;
+                cJSON_AddNumberToObject(root, "strong_voltage", (double) (data[i] + ((double) data[i + 1] / 10)));//34
+                i += 2;
+                cJSON_AddNumberToObject(root, "week_voltage", (double) (data[i] + ((double) data[i + 1] / 10)));//56
+                i += 2;
+                cJSON_AddNumberToObject(root, "S2W_time", (double) (data[i] + ((double) data[i + 1] / 10)));//78
+                i += 2;
+                cJSON_AddNumberToObject(root, "top_weak_grip", data[i++]);//9
+                cJSON_AddNumberToObject(root, "cost_coins", data[i++]);//10
+                cJSON_AddNumberToObject(root, "game_time", data[i++]);//11
+                cJSON_AddNumberToObject(root, "bgm", data[i++]);//12
+                cJSON_AddNumberToObject(root, "cannot_catch_coins", data[i++]);//13
+                cJSON_AddNumberToObject(root, "push_catch", data[i++]);//14
+                cJSON_AddNumberToObject(root, "continue_give", data[i++]);//15
+                cJSON_AddNumberToObject(root, "auto_start", data[i++]);//16
+
+                const char *sys_info = cJSON_Print(root);
+                httpd_resp_sendstr(req, sys_info);
+                free((void *)sys_info);
+            }break;
+            case Check:
+            {
+                step = End;
+
+            }
+                break;
+            case End:
+                break;
+        }
+    }
+    xSemaphoreGive(lock);
+    cJSON_Delete(root);
+    return ESP_OK;
+}
 
 esp_err_t start_rest_server(const char *base_path)
 {
@@ -560,6 +666,13 @@ esp_err_t start_rest_server(const char *base_path)
     };
     httpd_register_uri_handler(server, &cloud_charge_uri);
 
+    httpd_uri_t status_uri = {
+            .uri = "/api/v1/status",
+            .method = HTTP_GET,
+            .handler = get_status_handler,
+            .user_ctx = rest_context
+    };
+    httpd_register_uri_handler(server, &status_uri);
 
 
 //    /* URI handler for fetching temperature data */
