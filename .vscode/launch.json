@@ -7,7 +7,13 @@
         {
             "name": "ESP-IDF调试 启动",
             "type": "espidf",
-            "request": "launch"
+            "request": "launch",
+            "debugPort": 3333,
+            "logLevel": 2,
+            "mode": "manual",
+            "verifyAppBinBeforeDebug": false,
+            "tmoScaleFactor": 1,
+            "gdbinitFile": "${workspaceFolder}/gdbinit"
         }
     ]
 }

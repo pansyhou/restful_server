@@ -28,13 +28,13 @@
 #include "driver/sdmmc_host.h"
 #endif
 
-const int RX_BUF_SIZE = 1024;
+const int RX_BUF_SIZE = 512;
 
-//¶¨Òå·¢ËÍÐÅÏ¢¶ÓÁÐ£¬´óÐ¡Îª64¸öÊý¾Ý°ü£¬Ò»¸öÊý¾Ý°ü20
+//ï¿½ï¿½ï¿½å·¢ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Ð¡Îª64ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½20
 QueueHandle_t Queue = NULL;
 QueueHandle_t RxQueue = NULL;
 
-//¶¨ÒåÖ´ÐÐËø£¬µ±·¢³öÖ´ÐÐÖ¸ÁîÊ±ÉÏËø£¬µÃµ½»ú×ÓµÄ·µ»ØÊ±½âËø£¬×î´ó³¬Ê±Ê±¼äÒªÉèÖÃ
+//ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Ö¸ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÓµÄ·ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ê±ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
 SemaphoreHandle_t lock = NULL;
 
 
@@ -62,7 +62,7 @@ void uart_init(void) {
     };
     // We won't use a buffer for sending data.
     uart_driver_install(UART_NUM_1, RX_BUF_SIZE * 2, 0, 64, &Queue, 0);
-    //Çå¿Õ»º³åÇøÊý¾Ý£¨ÖØÐÂmallocÐÂµÄdataÓò£©
+    //ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½mallocï¿½Âµï¿½dataï¿½ï¿½
     uart_pattern_queue_reset(UART_NUM_1, 64);
     uart_param_config(UART_NUM_1, &uart_config);
     uart_set_pin(UART_NUM_1, TXD_PIN, RXD_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
@@ -164,8 +164,7 @@ esp_err_t init_fs(void)
 
 void app_main(void)
 {
-    ESP_ERROR_CHECK(nvs_flash_init());
-    ESP_ERROR_CHECK(esp_netif_init());
+    ESP_ERROR_CHECK(nvs_flash_init());       
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     initialise_mdns();
     netbiosns_init();

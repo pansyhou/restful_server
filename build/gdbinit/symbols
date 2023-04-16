@@ -1,0 +1,5 @@
+
+# Load bootloader symbols
+set confirm off
+  add-symbol-file C:\\Users\\16771\\Desktop\\http_server\\restful_server\\build\\bootloader\\bootloader.elf
+set confirm on

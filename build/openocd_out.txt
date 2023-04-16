@@ -1,0 +1,1687 @@
+Open On-Chip Debugger v0.11.0-esp32-20221026 (2022-10-26-14:48)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : only one transport option; autoselect 'jtag'
+Info : esp_usb_jtag: VID set to 0x303a and PID to 0x1001
+Info : esp_usb_jtag: capabilities descriptor set to 0x2000
+Warn : Transport "jtag" was already selected
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Error: libusb_open() failed with LIBUSB_ERROR_NOT_SUPPORTED
+Info : esp_usb_jtag: serial (F4:12:FA:E7:0E:58)
+Info : esp_usb_jtag: Device found. Base speed 40000KHz, div range 1 to 255
+Info : clock speed 40000 kHz
+Info : JTAG tap: esp32s3.cpu0 tap/device found: 0x120034e5 (mfg: 0x272 (Tensilica), part: 0x2003, ver: 0x1)
+Info : JTAG tap: esp32s3.cpu1 tap/device found: 0x120034e5 (mfg: 0x272 (Tensilica), part: 0x2003, ver: 0x1)
+Info : starting gdb server for esp32s3.cpu0 on 3333
+Info : Listening on port 3333 for gdb connections
+Info : [esp32s3.cpu0] Target halted, PC=0x4037B8E2, debug_reason=00000000
+Info : [esp32s3.cpu0] Reset cause (1) - (Power on reset)
+Info : [esp32s3.cpu1] Target halted, PC=0x4037B8E2, debug_reason=00000000
+Info : [esp32s3.cpu1] Reset cause (1) - (Power on reset)
+Open On-Chip Debugger v0.11.0-esp32-20221026 (2022-10-26-14:48)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : only one transport option; autoselect 'jtag'
+Info : esp_usb_jtag: VID set to 0x303a and PID to 0x1001
+Info : esp_usb_jtag: capabilities descriptor set to 0x2000
+Warn : Transport "jtag" was already selected
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Error: libusb_open() failed with LIBUSB_ERROR_NOT_SUPPORTED
+Info : esp_usb_jtag: serial (F4:12:FA:E7:0E:58)
+Info : esp_usb_jtag: Device found. Base speed 40000KHz, div range 1 to 255
+Info : clock speed 40000 kHz
+Info : JTAG tap: esp32s3.cpu0 tap/device found: 0x120034e5 (mfg: 0x272 (Tensilica), part: 0x2003, ver: 0x1)
+Info : JTAG tap: esp32s3.cpu1 tap/device found: 0x120034e5 (mfg: 0x272 (Tensilica), part: 0x2003, ver: 0x1)
+Info : starting gdb server for esp32s3.cpu0 on 3333
+Info : Listening on port 3333 for gdb connections
+Info : [esp32s3.cpu0] Target halted, PC=0x4037B8E2, debug_reason=00000000
+Info : [esp32s3.cpu0] Reset cause (1) - (Power on reset)
+Info : [esp32s3.cpu1] Target halted, PC=0x4037B8E2, debug_reason=00000000
+Info : [esp32s3.cpu1] Reset cause (1) - (Power on reset)
+Info : accepting 'gdb' connection on tcp/3333
+Info : [esp32s3.cpu0] Target halted, PC=0x4037B8E2, debug_reason=00000000
+Info : Set GDB target to 'esp32s3.cpu0'
+Info : [esp32s3.cpu1] Target halted, PC=0x4037B8E2, debug_reason=00000000
+Memory protection is enabled. Reset target to disable it...
+Info : JTAG tap: esp32s3.cpu0 tap/device found: 0x120034e5 (mfg: 0x272 (Tensilica), part: 0x2003, ver: 0x1)
+Info : JTAG tap: esp32s3.cpu1 tap/device found: 0x120034e5 (mfg: 0x272 (Tensilica), part: 0x2003, ver: 0x1)
+Info : [esp32s3.cpu0] requesting target halt and executing a soft reset
+Info : [esp32s3.cpu0] Debug controller was reset.
+Info : [esp32s3.cpu0] Core was reset.
+Info : [esp32s3.cpu0] Target halted, PC=0x500000EF, debug_reason=00000000
+Info : [esp32s3.cpu0] Reset cause (3) - (Software core reset)
+Info : [esp32s3.cpu1] requesting target halt and executing a soft reset
+Info : [esp32s3.cpu0] Core was reset.
+Info : [esp32s3.cpu0] Target halted, PC=0x40000400, debug_reason=00000000
+Info : [esp32s3.cpu1] Debug controller was reset.
+Info : [esp32s3.cpu1] Core was reset.
+Info : [esp32s3.cpu1] Target halted, PC=0x40000400, debug_reason=00000000
+Info : [esp32s3.cpu1] Reset cause (3) - (Software core reset)
+Info : [esp32s3.cpu0] Reset cause (3) - (Software core reset)
+Warn : No symbols for FreeRTOS!
+Info : [esp32s3.cpu0] Target halted, PC=0x403B2482, debug_reason=00000001
+Info : Flash mapping 0: 0x10020 -> 0x3c0a0020, 137 KB
+Info : Flash mapping 1: 0x40020 -> 0x42000020, 578 KB
+Info : [esp32s3.cpu0] Target halted, PC=0x403B2482, debug_reason=00000001
+Info : Auto-detected flash bank 'esp32s3.cpu0.flash' size 16384 KB
+Info : Using flash bank 'esp32s3.cpu0.flash' size 16384 KB
+Info : [esp32s3.cpu0] Target halted, PC=0x403B2482, debug_reason=00000001
+Info : Flash mapping 0: 0x10020 -> 0x3c0a0020, 137 KB
+Info : Flash mapping 1: 0x40020 -> 0x42000020, 578 KB
+Info : Using flash bank 'esp32s3.cpu0.irom' size 580 KB
+Info : [esp32s3.cpu0] Target halted, PC=0x403B2482, debug_reason=00000001
+Info : Flash mapping 0: 0x10020 -> 0x3c0a0020, 137 KB
+Info : Flash mapping 1: 0x40020 -> 0x42000020, 578 KB
+Info : Using flash bank 'esp32s3.cpu0.drom' size 140 KB
+Info : New GDB Connection: 1, Target esp32s3.cpu0, state: halted
+Warn : ignoring character 0x43
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : negative acknowledgment, but no packet pending
+Warn : ignoring character 0x4c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x74
+Warn : ignoring character 0x68
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x20
+Warn : ignoring character 0x35
+Warn : ignoring character 0x31
+Warn : ignoring character 0x37
+Warn : ignoring character 0xd
+Warn : ignoring character 0xa
+Warn : ignoring character 0xd
+Warn : ignoring character 0xa
+Warn : ignoring character 0x7b
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x64
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x69
+Warn : ignoring character 0x74
+Warn : ignoring character 0x69
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x7a
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x67
+Warn : ignoring character 0x75
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x7b
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x49
+Warn : ignoring character 0x44
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x76
+Warn : ignoring character 0x73
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x64
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x4e
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x56
+Warn : ignoring character 0x69
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x20
+Warn : ignoring character 0x53
+Warn : ignoring character 0x74
+Warn : ignoring character 0x75
+Warn : ignoring character 0x64
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x20
+Warn : ignoring character 0x43
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x64
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x61
+Warn : ignoring character 0x64
+Warn : ignoring character 0x61
+Warn : ignoring character 0x70
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x72
+Warn : ignoring character 0x49
+Warn : ignoring character 0x44
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x70
+Warn : ignoring character 0x69
+Warn : ignoring character 0x64
+Warn : ignoring character 0x66
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x70
+Warn : ignoring character 0x61
+Warn : ignoring character 0x74
+Warn : ignoring character 0x68
+Warn : ignoring character 0x46
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x61
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x70
+Warn : ignoring character 0x61
+Warn : ignoring character 0x74
+Warn : ignoring character 0x68
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x53
+Warn : ignoring character 0x74
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x41
+Warn : ignoring character 0x74
+Warn : ignoring character 0x31
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x75
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x73
+Warn : ignoring character 0x53
+Warn : ignoring character 0x74
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x41
+Warn : ignoring character 0x74
+Warn : ignoring character 0x31
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x56
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x69
+Warn : ignoring character 0x61
+Warn : ignoring character 0x62
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x54
+Warn : ignoring character 0x79
+Warn : ignoring character 0x70
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x56
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x69
+Warn : ignoring character 0x61
+Warn : ignoring character 0x62
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x50
+Warn : ignoring character 0x61
+Warn : ignoring character 0x67
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x52
+Warn : ignoring character 0x75
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x49
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x54
+Warn : ignoring character 0x65
+Warn : ignoring character 0x72
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x52
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x63
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x7a
+Warn : ignoring character 0x68
+Warn : negative acknowledgment, but no packet pending
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x50
+Warn : ignoring character 0x72
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x67
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x73
+Warn : ignoring character 0x52
+Warn : ignoring character 0x65
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x49
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x76
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x64
+Warn : ignoring character 0x61
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x64
+Warn : ignoring character 0x45
+Warn : ignoring character 0x76
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x4d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x79
+Warn : ignoring character 0x52
+Warn : ignoring character 0x65
+Warn : ignoring character 0x66
+Warn : ignoring character 0x65
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x63
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x41
+Warn : ignoring character 0x72
+Warn : ignoring character 0x67
+Warn : ignoring character 0x73
+Warn : ignoring character 0x43
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x42
+Warn : ignoring character 0x65
+Warn : ignoring character 0x49
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x72
+Warn : ignoring character 0x70
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x64
+Warn : ignoring character 0x42
+Warn : ignoring character 0x79
+Warn : ignoring character 0x53
+Warn : ignoring character 0x68
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x4d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x79
+Warn : ignoring character 0x45
+Warn : ignoring character 0x76
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x53
+Warn : ignoring character 0x74
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x44
+Warn : ignoring character 0x65
+Warn : ignoring character 0x62
+Warn : ignoring character 0x75
+Warn : ignoring character 0x67
+Warn : ignoring character 0x67
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x52
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x7d
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x74
+Warn : ignoring character 0x79
+Warn : ignoring character 0x70
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x31
+Warn : ignoring character 0x7d
+Warn : keep_alive() was not invoked in the 1000 ms timelimit. GDB alive packet not sent! (1421 ms). Workaround: increase "set remotetimeout" in GDB
+Info : accepting 'tcl' connection on tcp/6666
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Info : Total trace memory: 16384 bytes
+Info : Open file c:/Users/16771/Desktop/http_server/restful_server/trace/trace_1680699519579.trace
+App trace params: from 2 cores, size 2048 bytes, stop_tmo 5 s, poll period 1 ms, wait_rst 0, skip 0 bytes
+Connect targets...
+Info : Targets connected.
+Total trace memory: 16384 bytes
+Open file c:/Users/16771/Desktop/http_server/restful_server/trace/trace_1680699519579.trace
+App trace params: from 2 cores, size 2048 bytes, stop_tmo 5 s, poll period 1 ms, wait_rst 0, skip 0 bytes
+Connect targets...
+Targets connected.
+
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Warn : ignoring character 0x43
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : negative acknowledgment, but no packet pending
+Warn : ignoring character 0x4c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x74
+Warn : ignoring character 0x68
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x20
+Warn : ignoring character 0x37
+Warn : ignoring character 0x39
+Warn : ignoring character 0xd
+Warn : ignoring character 0xa
+Warn : ignoring character 0xd
+Warn : ignoring character 0xa
+Warn : ignoring character 0x7b
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x64
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x64
+Warn : ignoring character 0x69
+Warn : ignoring character 0x73
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x65
+Warn : ignoring character 0x63
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x67
+Warn : ignoring character 0x75
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x7b
+Warn : ignoring character 0x22
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x66
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x73
+Warn : ignoring character 0x65
+Warn : ignoring character 0x7d
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x74
+Warn : ignoring character 0x79
+Warn : ignoring character 0x70
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x32
+Warn : ignoring character 0x7d
+Warn : keep_alive() was not invoked in the 1000 ms timelimit. GDB alive packet not sent! (1357 ms). Workaround: increase "set remotetimeout" in GDB
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Error: Data timeout!
+Disconnect targets...
+Info : Targets disconnected.
+Tracing is STOPPED. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : dropped 'tcl' connection
+Info : dropped 'gdb' connection
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Info : Total trace memory: 16384 bytes
+Info : Open file c:/Users/16771/Desktop/http_server/restful_server/trace/trace_1680699530025.trace
+App trace params: from 2 cores, size 2048 bytes, stop_tmo 5 s, poll period 1 ms, wait_rst 0, skip 0 bytes
+Connect targets...
+Info : Targets connected.
+Total trace memory: 16384 bytes
+Open file c:/Users/16771/Desktop/http_server/restful_server/trace/trace_1680699530025.trace
+App trace params: from 2 cores, size 2048 bytes, stop_tmo 5 s, poll period 1 ms, wait_rst 0, skip 0 bytes
+Connect targets...
+Targets connected.
+
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is RUNNING. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Error: Data timeout!
+Disconnect targets...
+Info : Targets disconnected.
+Tracing is STOPPED. Size is 0 of 2048 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : accepting 'tcl' connection on tcp/6666
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+Tracing is STOPPED. Size is 0 of 0 @ 0.000000 (0.000000) KiB/s
+Data: blocks incomplete 0, lost bytes: 0
+Block read time [1000000000.000000..0.000000] ms
+Block proc time [1000000000.000000..0.000000] ms
+
+Info : dropped 'tcl' connection
+Info : accepting 'gdb' connection on tcp/3333
+Warn : No symbols for FreeRTOS!
+Info : New GDB Connection: 1, Target esp32s3.cpu0, state: halted
+Warn : ignoring character 0x43
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : negative acknowledgment, but no packet pending
+Warn : ignoring character 0x4c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x74
+Warn : ignoring character 0x68
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x20
+Warn : ignoring character 0x35
+Warn : ignoring character 0x31
+Warn : ignoring character 0x37
+Warn : ignoring character 0xd
+Warn : ignoring character 0xa
+Warn : ignoring character 0xd
+Warn : ignoring character 0xa
+Warn : ignoring character 0x7b
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x64
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x69
+Warn : ignoring character 0x74
+Warn : ignoring character 0x69
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x7a
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x67
+Warn : ignoring character 0x75
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x7b
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x49
+Warn : ignoring character 0x44
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x76
+Warn : ignoring character 0x73
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x64
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x4e
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x56
+Warn : ignoring character 0x69
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x20
+Warn : ignoring character 0x53
+Warn : ignoring character 0x74
+Warn : ignoring character 0x75
+Warn : ignoring character 0x64
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x20
+Warn : ignoring character 0x43
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x64
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x61
+Warn : ignoring character 0x64
+Warn : ignoring character 0x61
+Warn : ignoring character 0x70
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x72
+Warn : ignoring character 0x49
+Warn : ignoring character 0x44
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x70
+Warn : ignoring character 0x69
+Warn : ignoring character 0x64
+Warn : ignoring character 0x66
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x70
+Warn : ignoring character 0x61
+Warn : ignoring character 0x74
+Warn : ignoring character 0x68
+Warn : ignoring character 0x46
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x61
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x70
+Warn : ignoring character 0x61
+Warn : ignoring character 0x74
+Warn : ignoring character 0x68
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x53
+Warn : ignoring character 0x74
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x41
+Warn : ignoring character 0x74
+Warn : ignoring character 0x31
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x75
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x73
+Warn : ignoring character 0x53
+Warn : ignoring character 0x74
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x41
+Warn : ignoring character 0x74
+Warn : ignoring character 0x31
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x56
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x69
+Warn : ignoring character 0x61
+Warn : ignoring character 0x62
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x54
+Warn : ignoring character 0x79
+Warn : ignoring character 0x70
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x56
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x69
+Warn : ignoring character 0x61
+Warn : ignoring character 0x62
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x50
+Warn : ignoring character 0x61
+Warn : ignoring character 0x67
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x52
+Warn : ignoring character 0x75
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x49
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x54
+Warn : ignoring character 0x65
+Warn : ignoring character 0x72
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x52
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x63
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x7a
+Warn : ignoring character 0x68
+Warn : negative acknowledgment, but no packet pending
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x50
+Warn : ignoring character 0x72
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x67
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x73
+Warn : ignoring character 0x52
+Warn : ignoring character 0x65
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x49
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x76
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x69
+Warn : ignoring character 0x64
+Warn : ignoring character 0x61
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x64
+Warn : ignoring character 0x45
+Warn : ignoring character 0x76
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x4d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x79
+Warn : ignoring character 0x52
+Warn : ignoring character 0x65
+Warn : ignoring character 0x66
+Warn : ignoring character 0x65
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x63
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x41
+Warn : ignoring character 0x72
+Warn : ignoring character 0x67
+Warn : ignoring character 0x73
+Warn : ignoring character 0x43
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x42
+Warn : ignoring character 0x65
+Warn : ignoring character 0x49
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x72
+Warn : ignoring character 0x70
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x64
+Warn : ignoring character 0x42
+Warn : ignoring character 0x79
+Warn : ignoring character 0x53
+Warn : ignoring character 0x68
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x4d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x79
+Warn : ignoring character 0x45
+Warn : ignoring character 0x76
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x75
+Warn : ignoring character 0x70
+Warn : ignoring character 0x70
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x53
+Warn : ignoring character 0x74
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x44
+Warn : ignoring character 0x65
+Warn : ignoring character 0x62
+Warn : ignoring character 0x75
+Warn : ignoring character 0x67
+Warn : ignoring character 0x67
+Warn : ignoring character 0x69
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x52
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x74
+Warn : ignoring character 0x72
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x7d
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x74
+Warn : ignoring character 0x79
+Warn : ignoring character 0x70
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x31
+Warn : ignoring character 0x7d
+Warn : keep_alive() was not invoked in the 1000 ms timelimit. GDB alive packet not sent! (1242 ms). Workaround: increase "set remotetimeout" in GDB
+Warn : ignoring character 0x43
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : negative acknowledgment, but no packet pending
+Warn : ignoring character 0x4c
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x67
+Warn : ignoring character 0x74
+Warn : ignoring character 0x68
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x20
+Warn : ignoring character 0x37
+Warn : ignoring character 0x39
+Warn : ignoring character 0xd
+Warn : ignoring character 0xa
+Warn : ignoring character 0xd
+Warn : ignoring character 0xa
+Warn : ignoring character 0x7b
+Warn : ignoring character 0x22
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x64
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x64
+Warn : ignoring character 0x69
+Warn : ignoring character 0x73
+Warn : ignoring character 0x63
+Warn : ignoring character 0x6f
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x65
+Warn : ignoring character 0x63
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x67
+Warn : ignoring character 0x75
+Warn : ignoring character 0x6d
+Warn : ignoring character 0x65
+Warn : ignoring character 0x6e
+Warn : ignoring character 0x74
+Warn : ignoring character 0x73
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x7b
+Warn : ignoring character 0x22
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x61
+Warn : ignoring character 0x72
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x66
+Warn : ignoring character 0x61
+Warn : ignoring character 0x6c
+Warn : ignoring character 0x73
+Warn : ignoring character 0x65
+Warn : ignoring character 0x7d
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x74
+Warn : ignoring character 0x79
+Warn : ignoring character 0x70
+Warn : ignoring character 0x65
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x22
+Warn : ignoring character 0x72
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x75
+Warn : ignoring character 0x65
+Warn : ignoring character 0x73
+Warn : ignoring character 0x74
+Warn : ignoring character 0x22
+Warn : ignoring character 0x2c
+Warn : ignoring character 0x22
+Warn : ignoring character 0x73
+Warn : ignoring character 0x65
+Warn : ignoring character 0x71
+Warn : ignoring character 0x22
+Warn : ignoring character 0x3a
+Warn : ignoring character 0x32
+Warn : ignoring character 0x7d
+Warn : keep_alive() was not invoked in the 1000 ms timelimit. GDB alive packet not sent! (1562 ms). Workaround: increase "set remotetimeout" in GDB
+Info : dropped 'gdb' connection

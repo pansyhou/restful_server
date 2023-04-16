@@ -25,6 +25,8 @@ typedef enum uart_step{
     End
 }uart_step;
 extern const int RX_BUF_SIZE;
+#define RX_ARRY_SIZE 512
+static uint8_t data[RX_ARRY_SIZE + 1];
 //自旋锁
 extern SemaphoreHandle_t lock;
 //自旋锁最大堵塞时间
@@ -49,9 +51,35 @@ static const char *REST_TAG = "esp-rest";
 int sendData(const uint8_t * data)
 {
     const int len = strlen((char *) data);
-    const int txBytes = uart_write_bytes(UART_NUM_1, data, len);
+//    因为异或值可能为0，当0的时候要发多两位
+//    if (data[4] == 0) {
+//        len += 2;
+//    }
+    const int txBytes = uart_write_bytes(UART_NUM_1, data, len + 2);
     return txBytes;
 }
+
+int Uart_RX_Data(uint8_t *Rxdata) {
+    //第一次接收信息，等一秒钟的数据帧到达
+    int len = uart_read_bytes(UART_NUM_1, Rxdata, RX_ARRY_SIZE, Uart_MaxBlockTime);
+    //如果有返回数据，直接读
+    if(len <= 0) { //在等一秒，实在不行就噶了
+        len = uart_read_bytes(UART_NUM_1, Rxdata, RX_ARRY_SIZE, Uart_MaxBlockTime);
+        if (len <=0) {
+            return 0;
+        } else{
+            ESP_LOGI(REST_TAG, "Read %d bytes: '%s'", len, Rxdata);
+            ESP_LOG_BUFFER_HEXDUMP(REST_TAG, Rxdata, len, ESP_LOG_INFO);
+            return len;
+        }
+    } else {
+            ESP_LOGI(REST_TAG, "Read %d bytes: '%s'", len, Rxdata);
+            ESP_LOG_BUFFER_HEXDUMP(REST_TAG, Rxdata, len, ESP_LOG_INFO);
+            return len;
+    }
+}
+
+
 
 esp_err_t Read_http_req(httpd_req_t *req, char * buf){
     int total_len = req->content_len;
@@ -187,6 +215,7 @@ static esp_err_t light_brightness_post_handler(httpd_req_t *req)
 
 static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
     uint8_t UartSendData[7] = {0};
+    memset(UartSendData, 0, sizeof(UartSendData));
     char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
     //解析请求到buf
     Read_http_req(req, buf);
@@ -220,7 +249,7 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
     httpd_resp_set_type(req, "application/json");
     //解析json
     cJSON *root = cJSON_CreateObject();
-    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
+//    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
     //第一次接收信息，等一秒钟的数据帧到达
     int rxBytes = uart_read_bytes(UART_NUM_1, data, RX_BUF_SIZE, Uart_MaxBlockTime);
     int total_length = 0;
@@ -237,6 +266,7 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
     }
     ESP_LOGI(REST_TAG, "Read %d bytes: '%s'", rxBytes, data);
     ESP_LOG_BUFFER_HEXDUMP(REST_TAG, data, rxBytes, ESP_LOG_INFO);
+
     //目前检查是不是index==Host_Code的条件有点严格，同时太占地方
         for (int i = 0; i < rxBytes; i++) {
             if (data[i] == 0xaa) {//帧头
@@ -285,26 +315,30 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
 
 static esp_err_t reset_terminal_handler (httpd_req_t *req){
     uint8_t UartSendData[7] = {0};
-    char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
-    //解析请求到buf
-    Read_http_req(req, buf);
-    //得到主机码
-    cJSON *get = cJSON_Parse(buf);
-    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
-    if (Host_Code < 1 || Host_Code > 0xFF) {
-        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
-    }
-    cJSON_Delete(get);
+    memset(UartSendData, 0, sizeof(UartSendData));
+//    char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
+//    //解析请求到buf
+//    Read_http_req(req, buf);
+//    //得到主机码
+//    cJSON *get = cJSON_Parse(buf);
+//    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
+//    if (Host_Code < 1 || Host_Code > 0xFF) {
+//        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
+//    }
+//    cJSON_Delete(get);
 
     //发送串口
     UartSendData[0] = 0xaa;//帧头
     UartSendData[1] = 0x03;//length
     UartSendData[2] = 0x01;//index
     UartSendData[3] = 0x02;//CMD
-    for (int i = 1; i < 4; i++) {
+    UartSendData[4] = UartSendData[1];
+    for (int i = 2; i < 4; i++) {
         UartSendData[4] ^= UartSendData[i];//异或校验
     }
-    UartSendData[5] = 0xDD;//end
+    ESP_LOGI(REST_TAG,"xor data :%d",UartSendData[4]);
+    UartSendData[5] = 0xdd;//end
+    UartSendData[6] = '\0';
     //拿锁
     xQueueSemaphoreTake(lock, Lock_MaxBlockTime);
     //清空缓冲区
@@ -316,7 +350,7 @@ static esp_err_t reset_terminal_handler (httpd_req_t *req){
     httpd_resp_set_type(req, "application/json");
     //解析json
     cJSON *root = cJSON_CreateObject();
-    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
+//    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
     //第一次接收信息，等一秒钟的数据帧到达
     int rxBytes = uart_read_bytes(UART_NUM_1, data, RX_BUF_SIZE, Uart_MaxBlockTime);
     int total_length = 0;
@@ -369,6 +403,102 @@ static esp_err_t reset_terminal_handler (httpd_req_t *req){
         }
     }
 
+    return ESP_OK;
+}
+
+static esp_err_t cloud_charge_handler (httpd_req_t *req){
+    uint8_t UartSendData[11] = {0};
+    memset(UartSendData, 0, sizeof(UartSendData));
+    char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
+    //解析请求到buf
+    Read_http_req(req, buf);
+    //得到主机码
+    cJSON *get = cJSON_Parse(buf);
+    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
+    if (Host_Code < 1 || Host_Code > 0xFF) {
+        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
+    }
+    int self_increasing_code = cJSON_GetObjectItem(get, "self-increasing_code")->valueint;
+    int coins = cJSON_GetObjectItem(get, "coins")->valueint;
+    int amount  = cJSON_GetObjectItem(get, "amount")->valueint;
+    cJSON_Delete(get);
+
+    //发送串口
+    UartSendData[0] = 0xaa;//帧头
+    UartSendData[1] = 0x08;//length
+    UartSendData[2] = 0x01;//index
+    UartSendData[3] = 0x04;//CMD
+    UartSendData[4] = (uint8_t)self_increasing_code;//data
+    UartSendData[5] = (uint8_t)(coins >> 8);//data
+    UartSendData[6] = (uint8_t)(coins);//data
+    UartSendData[7] = (uint8_t) (amount >> 8);//data
+    UartSendData[8] = (uint8_t) (amount);//data
+
+    for (int i = 1; i < 9; i++) {
+        UartSendData[9] ^= UartSendData[i];//异或校验
+    }
+    UartSendData[10] = 0xDD;//end
+
+
+    //拿锁
+    xQueueSemaphoreTake(lock, Lock_MaxBlockTime);
+    //清空缓冲区
+    uart_flush(UART_NUM_1);
+    //发送数据帧
+    sendData(UartSendData);
+
+    //处理数据帧阶段
+    httpd_resp_set_type(req, "application/json");
+    //解析json
+    cJSON *root = cJSON_CreateObject();
+//    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
+    uart_step step=End;
+    int rxBytes = Uart_RX_Data(data);
+    int total_length = 0;
+
+    //目前检查是不是index==Host_Code的条件有点严格，同时太占地方
+    for (int i = 0; i < rxBytes; i++) {
+        if (data[i] == 0xaa) {//帧头
+            step = head;
+        }
+        switch (step) {
+            case head:
+                step = length;
+                break;
+            case length:
+            {
+                step = Index;
+                total_length = data[i];
+            }break;
+            case Index:{
+                step = CMD ;
+                if (data[i] == Host_Code) {
+                    httpd_resp_sendstr(req, "OK");
+                    xSemaphoreGive(lock);
+                    cJSON_Delete(root);
+                    return ESP_OK;
+                } else{
+                    httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "response terminal did not the request terminal");
+                    xSemaphoreGive(lock);
+                    cJSON_Delete(root);
+                    return ESP_OK;
+                }
+            }break;
+            case CMD:
+                break;
+            case Data:
+                break;
+            case Check:
+                break;
+            case End:
+                break;
+        }
+    }
+//    cJSON_AddStringToObject(root, "String", (char *)data);
+//    const char *sys_info = cJSON_Print(root);
+//    httpd_resp_sendstr(req, sys_info);
+
+//    free((void *)sys_info);
     return ESP_OK;
 }
 ///* Simple handler for getting system handler */
@@ -430,6 +560,14 @@ esp_err_t start_rest_server(const char *base_path)
             .user_ctx = rest_context
     };
     httpd_register_uri_handler(server, &reset_terminal_uri);
+
+    httpd_uri_t cloud_charge_uri = {
+            .uri = "/api/v1/cloud_charge",
+            .method = HTTP_POST,
+            .handler = cloud_charge_handler,
+            .user_ctx = rest_context
+    };
+    httpd_register_uri_handler(server, &cloud_charge_uri);
 
 
 
