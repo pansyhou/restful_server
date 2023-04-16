@@ -25,7 +25,8 @@ typedef enum uart_step{
     End
 }uart_step;
 extern const int RX_BUF_SIZE;
-static uint8_t data[512];
+#define RX_ARRY_SIZE 512
+static uint8_t data[RX_ARRY_SIZE] = {0};
 //自旋锁
 extern SemaphoreHandle_t lock;
 //自旋锁最大堵塞时间
@@ -75,6 +76,27 @@ esp_err_t Read_http_req(httpd_req_t *req, char * buf){
     buf[total_len] = '\0';
     return ESP_OK;
 }
+
+int Uart_RX_Data(uint8_t *Rxdata) {
+    //第一次接收信息，等一秒钟的数据帧到达
+    int len = uart_read_bytes(UART_NUM_1, Rxdata, RX_ARRY_SIZE, Uart_MaxBlockTime);
+    //如果有返回数据，直接读
+    if(len <= 0) { //在等一秒，实在不行就噶了
+        len = uart_read_bytes(UART_NUM_1, Rxdata, RX_ARRY_SIZE, Uart_MaxBlockTime);
+        if (len <=0) {
+            return 0;
+        } else{
+            ESP_LOGI(REST_TAG, "Read %d bytes: '%s'", len, Rxdata);
+            ESP_LOG_BUFFER_HEXDUMP(REST_TAG, Rxdata, len, ESP_LOG_INFO);
+            return len;
+        }
+    } else {
+        ESP_LOGI(REST_TAG, "Read %d bytes: '%s'", len, Rxdata);
+        ESP_LOG_BUFFER_HEXDUMP(REST_TAG, Rxdata, len, ESP_LOG_INFO);
+        return len;
+    }
+}
+
 typedef struct rest_server_context {
     char base_path[ESP_VFS_PATH_MAX + 1];
     char scratch[SCRATCH_BUFSIZE];
@@ -286,26 +308,30 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
 
 static esp_err_t reset_terminal_handler (httpd_req_t *req){
     uint8_t UartSendData[7] = {0};
-    char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
-    //解析请求到buf
-    Read_http_req(req, buf);
-    //得到主机码
-    cJSON *get = cJSON_Parse(buf);
-    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
-    if (Host_Code < 1 || Host_Code > 0xFF) {
-        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
-    }
-    cJSON_Delete(get);
+    memset(UartSendData, 0, sizeof(UartSendData));
+//    char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
+//    //解析请求到buf
+//    Read_http_req(req, buf);
+//    //得到主机码
+//    cJSON *get = cJSON_Parse(buf);
+//    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
+//    if (Host_Code < 1 || Host_Code > 0xFF) {
+//        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
+//    }
+//    cJSON_Delete(get);
 
     //发送串口
     UartSendData[0] = 0xaa;//帧头
     UartSendData[1] = 0x03;//length
     UartSendData[2] = 0x01;//index
     UartSendData[3] = 0x02;//CMD
-    for (int i = 1; i < 4; i++) {
+    UartSendData[4] = UartSendData[1];
+    for (int i = 2; i < 4; i++) {
         UartSendData[4] ^= UartSendData[i];//异或校验
     }
-    UartSendData[5] = 0xDD;//end
+    ESP_LOGI(REST_TAG,"xor data :%d",UartSendData[4]);
+    UartSendData[5] = 0xdd;//end
+    UartSendData[6] = '\0';
     //拿锁
     xQueueSemaphoreTake(lock, Lock_MaxBlockTime);
     //清空缓冲区
