@@ -249,24 +249,11 @@ static esp_err_t connect_status_info_get_handler (httpd_req_t *req){
     httpd_resp_set_type(req, "application/json");
     //解析json
     cJSON *root = cJSON_CreateObject();
-//    uint8_t* data = (uint8_t*) malloc(RX_BUF_SIZE+1);
-    //第一次接收信息，等一秒钟的数据帧到达
-    int rxBytes = uart_read_bytes(UART_NUM_1, data, RX_BUF_SIZE, Uart_MaxBlockTime);
-    int total_length = 0;
-    //如果有返回数据，直接读
-    uart_step step=End;
-    if(rxBytes <= 0) { //在等一秒，实在不行就噶了
-        rxBytes = uart_read_bytes(UART_NUM_1, data, RX_BUF_SIZE, 1000 / portTICK_PERIOD_MS);
-        if (rxBytes <=0) {
-            httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "terminal did not send back any response, please resend");
-            xSemaphoreGive(lock);
-            cJSON_Delete(root);
-            return ESP_OK;
-        }
-    }
-    ESP_LOGI(REST_TAG, "Read %d bytes: '%s'", rxBytes, data);
-    ESP_LOG_BUFFER_HEXDUMP(REST_TAG, data, rxBytes, ESP_LOG_INFO);
 
+    int rxBytes = Uart_RX_Data(data);
+    
+    int total_length = 0;
+    uart_step step=End;
     //目前检查是不是index==Host_Code的条件有点严格，同时太占地方
         for (int i = 0; i < rxBytes; i++) {
             if (data[i] == 0xaa) {//帧头
@@ -456,7 +443,6 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
     int rxBytes = Uart_RX_Data(data);
     int total_length = 0;
 
-    //目前检查是不是index==Host_Code的条件有点严格，同时太占地方
     for (int i = 0; i < rxBytes; i++) {
         if (data[i] == 0xaa) {//帧头
             step = head;
@@ -471,34 +457,39 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
                 total_length = data[i];
             }break;
             case Index:{
-                step = CMD ;
-                if (data[i] == Host_Code) {
-                    httpd_resp_sendstr(req, "OK");
-                    xSemaphoreGive(lock);
-                    cJSON_Delete(root);
-                    return ESP_OK;
-                } else{
-                    httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "response terminal did not the request terminal");
-                    xSemaphoreGive(lock);
-                    cJSON_Delete(root);
-                    return ESP_OK;
-                }
+                step = CMD;
             }break;
-            case CMD:
+            case CMD:{
+                step = Check;
+            }
                 break;
+            case Check:
+
             case Data:
-                break;
+                if (data[i] == 0x01) {
+                        httpd_resp_sendstr(req, "OK");
+                        xSemaphoreGive(lock);
+                        cJSON_Delete(root);
+                        return ESP_OK;
+                    } else if (data[i] == 0x00){
+                        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "cloud charge fail");
+                        xSemaphoreGive(lock);
+                        cJSON_Delete(root);
+                        return ESP_OK;
+                    }else{
+                        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "data not reliable");
+                        xSemaphoreGive(lock);
+                        cJSON_Delete(root);
+                        return ESP_OK;
+                    }
+                    break;
             case Check:
                 break;
             case End:
                 break;
         }
     }
-//    cJSON_AddStringToObject(root, "String", (char *)data);
-//    const char *sys_info = cJSON_Print(root);
-//    httpd_resp_sendstr(req, sys_info);
 
-//    free((void *)sys_info);
     return ESP_OK;
 }
 ///* Simple handler for getting system handler */
