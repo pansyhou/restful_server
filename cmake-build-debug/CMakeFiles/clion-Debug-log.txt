@@ -1,4 +1,4 @@
-C:\Jetbrain\apps\CLion\ch-0\223.7571.171\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=E:/Application/mingw64/bin/mingw32-make.exe "-DCMAKE_C_COMPILER=E:/Application/10 2021.10/bin/arm-none-eabi-gcc.exe" "-DCMAKE_CXX_COMPILER=E:/Application/10 2021.10/bin/arm-none-eabi-g++.exe" -G "CodeBlocks - MinGW Makefiles" -S C:\Users\16771\Desktop\http_server\restful_server -B C:\Users\16771\Desktop\http_server\restful_server\cmake-build-debug
+C:\Jetbrain\apps\CLion\ch-0\231.8109.174\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=E:/Application/mingw64/bin/mingw32-make.exe "-DCMAKE_C_COMPILER=E:/Application/10 2021.10/bin/arm-none-eabi-gcc.exe" "-DCMAKE_CXX_COMPILER=E:/Application/10 2021.10/bin/arm-none-eabi-g++.exe" -G "CodeBlocks - MinGW Makefiles" -S C:\Users\16771\Desktop\http_server\restful_server -B C:\Users\16771\Desktop\http_server\restful_server\cmake-build-debug
 -- Building ESP-IDF components for target esp32s3
 -- Checking Python dependencies...
 Python requirements are satisfied.
@@ -11,7 +11,7 @@ Processing 2 dependencies:
 [2/2] idf (5.0.1)
 -- Project sdkconfig file C:/Users/16771/Desktop/http_server/restful_server/sdkconfig
 Loading defaults file C:/Users/16771/Desktop/http_server/restful_server/sdkconfig.defaults...
--- App "restful_server" version: 56a863f-dirty
+-- App "restful_server" version: eb45235-dirty
 -- Adding linker script C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.0.1/components/esp_system/ld/esp32s3/sections.ld.in
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.0.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
@@ -70,7 +70,7 @@ Loading defaults file C:/Users/16771/Desktop/http_server/restful_server/sdkconfi
 -- Found Python3: C:/Espressif/python_env/idf5.0_py3.8_env/Scripts/python.exe (found version "3.8.7") found components: Interpreter 
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
 -- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
--- App "restful_server" version: 56a863f-dirty
+-- App "restful_server" version: eb45235-dirty
 -- Adding linker script C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.0.1/components/esp_system/ld/esp32s3/sections.ld.in
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.0.1/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
