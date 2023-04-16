@@ -7,7 +7,7 @@
     "bootloader_elf":     "C:/Users/16771/Desktop/http_server/restful_server/cmake-build-debug/bootloader/bootloader.elf",
     "app_elf":            "restful_server.elf",
     "app_bin":            "restful_server.bin",
-    "git_revision":       "v5.0.1-dirty",
+    "git_revision":       "5088efa",
     "target":             "esp32s3",
     "rev":                "",
     "min_rev":            "0",

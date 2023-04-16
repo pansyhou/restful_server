@@ -25,8 +25,12 @@ typedef enum uart_step{
     End
 }uart_step;
 extern const int RX_BUF_SIZE;
+<<<<<<< HEAD
 #define RX_ARRY_SIZE 512
 static uint8_t data[RX_ARRY_SIZE] = {0};
+=======
+static uint8_t data[512];
+>>>>>>> eb4523544ab3eae9b0457ddac1fd009e16aed081
 //自旋锁
 extern SemaphoreHandle_t lock;
 //自旋锁最大堵塞时间
