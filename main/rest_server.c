@@ -50,12 +50,13 @@ static const char *REST_TAG = "esp-rest";
 
 int sendData(const uint8_t * data)
 {
-    const int len = strlen((char *) data);
+//    const int len = strlen((char *) data);
 //    因为异或值可能为0，当0的时候要发多两位
 //    if (data[4] == 0) {
 //        len += 2;
 //    }
-    const int txBytes = uart_write_bytes(UART_NUM_1, data, len + 2);
+    const int len = data[1] + 3;
+    const int txBytes = uart_write_bytes(UART_NUM_1, data, len );
     return txBytes;
 }
 
@@ -403,10 +404,10 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
     Read_http_req(req, buf);
     //得到主机码
     cJSON *get = cJSON_Parse(buf);
-    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
-    if (Host_Code < 1 || Host_Code > 0xFF) {
-        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
-    }
+//    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
+//    if (Host_Code < 1 || Host_Code > 0xFF) {
+//        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
+//    }
     int self_increasing_code = cJSON_GetObjectItem(get, "self-increasing_code")->valueint;
     int coins = cJSON_GetObjectItem(get, "coins")->valueint;
     int amount  = cJSON_GetObjectItem(get, "amount")->valueint;
@@ -445,13 +446,14 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
     uart_step step=End;
     int rxBytes = Uart_RX_Data(data);
     int total_length = 0;
+    int index = 0;
     int checkSum = 0;//lenth-data
     int start = 0;
     int flag = 0;
     for (int i = 0; i < rxBytes; i++) {
         if (data[i] == 0xaa) {//帧头
             step = head;
-            start = i;
+            start = i+2;
         }
         switch (step) {
             case head:
@@ -460,10 +462,12 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
             case length:
             {
                 step = Index;
+                checkSum = data[i];
                 total_length = data[i];
             }break;
             case Index:{
                 step = CMD;
+                index = data[i];
             }break;
             case CMD:{
                 step = Data;
@@ -473,27 +477,41 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
                 step = Check;
                 if (data[i] == 0x01) {
                     flag = 1;
-
+                    
                 }
             }break;
             case Check:
             {
                 step = End;
                 for (int j = start; j < i; j++) {
-                    checkSum ^= data[i];
+                    checkSum ^= data[j];
+                    ESP_LOGI(REST_TAG,"%d",checkSum);
                 }
-                if (data[i] == checkSum && flag == 1) {
-                    httpd_resp_sendstr(req, "OK");
-                } else{
-                    httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "cloud charge fail");
+                ESP_LOGI(REST_TAG,"%d",checkSum);
+                if ( checkSum==data[i] &&flag == 1) {
 
+                    flag = 2;
                 }
+//                } else{
+//                    httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "cloud charge fail");
+//
+//                }
             }
                 break;
             case End:
                 break;
         }
     }
+
+    if (flag == 2) {
+        cJSON_AddNumberToObject(root, "index", index);
+//        cJSON_AddNumberToObject(root, "data", 1);
+        const char *sys_info = cJSON_Print(root);
+        httpd_resp_sendstr(req, sys_info);
+    } else{
+        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "cloud charge fail");
+    }
+
     xSemaphoreGive(lock);
     cJSON_Delete(root);
     return ESP_OK;
@@ -627,6 +645,134 @@ static esp_err_t get_status_handler (httpd_req_t *req){
     return ESP_OK;
 }
 
+
+static esp_err_t set_status_handler (httpd_req_t *req){
+    uint8_t UartSendData[25] = {0};
+    memset(UartSendData, 0, sizeof(UartSendData));
+    char *buf = ((rest_server_context_t *)(req->user_ctx))->scratch;
+    //解析请求到buf
+    Read_http_req(req, buf);
+    //得到主机码
+    cJSON *get = cJSON_Parse(buf);
+    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
+    if (Host_Code < 1 || Host_Code > 0xFF) {
+        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
+    }
+    
+
+    int game_mode =cJSON_GetObjectItem(get, "game_mode")->valueint;
+    int probability =cJSON_GetObjectItem(get, "probability")->valueint;
+    double strong_voltage =cJSON_GetObjectItemCaseSensitive(get, "strong_voltage")->valuedouble;
+    double week_voltage =cJSON_GetObjectItemCaseSensitive(get, "week_voltage")->valuedouble;
+    double S2W_time =cJSON_GetObjectItemCaseSensitive(get, "S2W_time")->valuedouble;
+    int top_weak_grip =cJSON_GetObjectItem(get, "top_weak_grip")->valueint;
+    int cost_coins =cJSON_GetObjectItem(get, "cost_coins")->valueint;
+    int game_time =cJSON_GetObjectItem(get, "game_time")->valueint;
+    int bgm =cJSON_GetObjectItem(get, "bgm")->valueint;
+    int cannot_catch_coins =cJSON_GetObjectItem(get, "cannot_catch_coins")->valueint;
+    int push_catch =cJSON_GetObjectItem(get, "push_catch")->valueint;
+    int continue_give  =cJSON_GetObjectItem(get, "continue_give")->valueint;
+    int auto_start  =cJSON_GetObjectItem(get, "auto_start")->valueint;
+
+    cJSON_Delete(get);
+    //发送串口
+    UartSendData[0] = 0xaa;//帧头
+    UartSendData[1] = 0x0b;//length
+    UartSendData[2] = 0x01;//index
+    UartSendData[3] = 0x01;//CMD
+    UartSendData[4] = (uint8_t)game_mode;//data
+    UartSendData[5] = (uint8_t)probability;//data
+    UartSendData[6] = (uint8_t)(probability>>8);//data
+    UartSendData[7] = (uint8_t)((int)strong_voltage);//data
+    UartSendData[8] = (uint8_t)((int)strong_voltage-(int)(strong_voltage*10));//data
+    UartSendData[9] = (uint8_t)((int)week_voltage);//data
+    UartSendData[10] = (uint8_t)((int)week_voltage-(int)(week_voltage*10));//data
+    
+    UartSendData[11] = (uint8_t)((int)S2W_time);//data
+    UartSendData[12] = (uint8_t)((int)S2W_time-(int)(S2W_time*10));//data
+    
+    UartSendData[13] = (uint8_t)top_weak_grip;//data
+    UartSendData[14] = (uint8_t)cost_coins;//data
+    UartSendData[15] = (uint8_t)game_time;//data
+    UartSendData[16] = (uint8_t)bgm;//data
+    UartSendData[17] = (uint8_t)cannot_catch_coins;//data
+    UartSendData[18] = (uint8_t)push_catch;//data
+    UartSendData[19] = (uint8_t)continue_give;//data
+    UartSendData[20] = (uint8_t)auto_start;//data
+
+
+
+
+    UartSendData[21] = UartSendData[1];
+    for (int i = 2; i < 21; i++) {
+        UartSendData[21] ^= UartSendData[i];//异或校验
+    }
+    ESP_LOGI(REST_TAG,"xor data :%d",UartSendData[5]);
+    UartSendData[22] = 0xDD;//end
+
+    //拿锁
+    xQueueSemaphoreTake(lock, Lock_MaxBlockTime);
+    //清空缓冲区
+    uart_flush(UART_NUM_1);
+    //发送数据帧
+    sendData(UartSendData);
+
+    //处理数据帧阶段
+    httpd_resp_set_type(req, "application/json");
+    //解析json
+    cJSON *root = cJSON_CreateObject();
+
+    int rxBytes = Uart_RX_Data(data);
+    
+    int total_length = 0;
+    uart_step step=End;
+    int index = 0;
+    int is_suss = 0;
+    // 目前检查是不是index==Host_Code的条件有点严格，同时太占地方
+    for (int i = 0; i < rxBytes; i++)
+    {
+        if (data[i] == 0xaa)
+        { // 帧头
+                step = head;
+            }
+            switch (step) {
+                case head:
+                    step = length;
+                    break;
+                case length:
+                {
+                    step = Index;
+                    total_length = data[i];
+                }break;
+                case Index:{
+                    step = CMD ;
+                    index = data[i];
+                }
+                break;
+                case CMD:
+                    break;
+                case Data:
+                    is_suss = data[i];
+                    break;
+                case Check:
+                    break;
+                case End:
+                    break;
+            }
+        }
+
+//    cJSON_AddStringToObject(root, "String", (char *)data);
+    cJSON_AddNumberToObject(root, "index", index);
+    cJSON_AddNumberToObject(root, "is_suss", is_suss);
+
+   const char *sys_info = cJSON_Print(root);
+   httpd_resp_sendstr(req, sys_info);
+
+   free((void *)sys_info);
+    return ESP_OK;
+}
+
+
 esp_err_t start_rest_server(const char *base_path)
 {
     REST_CHECK(base_path, "wrong base path", err);
@@ -684,23 +830,33 @@ esp_err_t start_rest_server(const char *base_path)
 //    };
 //    httpd_register_uri_handler(server, &temperature_data_get_uri);
 
-    /* URI handler for light brightness control */
-    httpd_uri_t light_brightness_post_uri = {
-        .uri = "/api/v1/light/brightness",
-        .method = HTTP_POST,
-        .handler = light_brightness_post_handler,
-        .user_ctx = rest_context
+    
+    httpd_uri_t set_status_uri = {
+            .uri = "/api/v1/set_status",
+            .method = HTTP_POST,
+            .handler = set_status_handler,
+            .user_ctx = rest_context
     };
-    httpd_register_uri_handler(server, &light_brightness_post_uri);
+    httpd_register_uri_handler(server, &set_status_uri);
 
-    /* URI handler for getting web server files */
-    httpd_uri_t common_get_uri = {
-        .uri = "/*",
-        .method = HTTP_GET,
-        .handler = rest_common_get_handler,
-        .user_ctx = rest_context
-    };
-    httpd_register_uri_handler(server, &common_get_uri);
+
+    /* URI handler for light brightness control */
+//    httpd_uri_t light_brightness_post_uri = {
+//        .uri = "/api/v1/light/brightness",
+//        .method = HTTP_POST,
+//        .handler = light_brightness_post_handler,
+//        .user_ctx = rest_context
+//    };
+//    httpd_register_uri_handler(server, &light_brightness_post_uri);
+//
+//    /* URI handler for getting web server files */
+//    httpd_uri_t common_get_uri = {
+//        .uri = "/*",
+//        .method = HTTP_GET,
+//        .handler = rest_common_get_handler,
+//        .user_ctx = rest_context
+//    };
+//    httpd_register_uri_handler(server, &common_get_uri);
 
     return ESP_OK;
 err_start:
