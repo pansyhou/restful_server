@@ -477,7 +477,7 @@ static esp_err_t cloud_charge_handler (httpd_req_t *req){
                 step = Check;
                 if (data[i] == 0x01) {
                     flag = 1;
-                    
+
                 }
             }break;
             case Check:
@@ -654,10 +654,10 @@ static esp_err_t set_status_handler (httpd_req_t *req){
     Read_http_req(req, buf);
     //得到主机码
     cJSON *get = cJSON_Parse(buf);
-    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
-    if (Host_Code < 1 || Host_Code > 0xFF) {
-        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
-    }
+//    int Host_Code = cJSON_GetObjectItem(get, "Host_Code")->valueint;
+//    if (Host_Code < 1 || Host_Code > 0xFF) {
+//        return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Host_Code has problem , please send again");
+//    }
     
 
     int game_mode =cJSON_GetObjectItem(get, "game_mode")->valueint;
@@ -677,7 +677,7 @@ static esp_err_t set_status_handler (httpd_req_t *req){
     cJSON_Delete(get);
     //发送串口
     UartSendData[0] = 0xaa;//帧头
-    UartSendData[1] = 0x0b;//length
+    UartSendData[1] = 0x14;//length
     UartSendData[2] = 0x01;//index
     UartSendData[3] = 0x01;//CMD
     UartSendData[4] = (uint8_t)game_mode;//data
@@ -750,11 +750,14 @@ static esp_err_t set_status_handler (httpd_req_t *req){
                 }
                 break;
                 case CMD:
+                    step = Data;
                     break;
                 case Data:
+                    step = Check;
                     is_suss = data[i];
                     break;
                 case Check:
+                    step = End;
                     break;
                 case End:
                     break;

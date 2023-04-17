@@ -69,7 +69,7 @@
 
 极端情况是：应答帧一直在发送（超过我的FIFO大小会自动截断），但是这个时候http response我是还没有发送的，都是等他串口空闲才将数据打包解码返回response，如果这个时候超过自旋锁堵塞2000ms的话，就会将控制权交给下一位，所以在下一位使用的时候，会将缓冲区清一遍。
 
-
+> 经过测试主要慢的原因在网络这边，串口的反应还是十分快的，总体反应时间在1000-1500ms
 
 ## API
 
@@ -219,7 +219,47 @@
 - index
 - is_suss
 
-is_suss=1时成功(不判断校验位)
+> {
+>
+>   "game_mode": 1,
+>
+>   "probability":1,
+>
+>   "strong_voltage":1.2,
+>
+>   "week_voltage":1.3,
+>
+>   "S2W_time":2,
+>
+>   "top_weak_grip":3,
+>
+>   "cost_coins":2,
+>
+>   "game_time":3,
+>
+>   "bgm":3,
+>
+>   "cannot_catch_coins":5,
+>
+>   "push_catch":3,
+>
+>   "continue_give":4,
+>
+>   "auto_start":3
+>
+> }
+
+- {
+
+    "index": 0,
+
+    "is_suss": 0
+
+  }
+
+> TODO：并没有对校验值进行检验
+
+
 
 ### 7面板账目清零
 
